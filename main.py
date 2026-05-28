@@ -1,29 +1,18 @@
-from src.etudiant import Etudiant
-from src.cours import Cours
+import sys
+
+from PyQt6.QtWidgets import QApplication
+
+from ui.accueil import FenetreAccueil
 
 
-# Ajouter étudiant
-e1 = Etudiant(
-    "Mbarga",
-    "Jean-Paul",
-    "21TIC042",
-    "TIC"
-)
+# Créer application
+app = QApplication(sys.argv)
 
-e1.ajouter()
+# Créer fenêtre accueil
+fenetre = FenetreAccueil()
 
+# Afficher fenêtre
+fenetre.show()
 
-# Afficher étudiants
-print("Liste des étudiants :")
-
-print(Etudiant.afficher_tous())
-
-
-# Ajouter cours
-c1 = Cours(
-    "INF101",
-    "Programmation Python",
-    5
-)
-
-c1.ajouter()
+# Exécuter application
+sys.exit(app.exec())

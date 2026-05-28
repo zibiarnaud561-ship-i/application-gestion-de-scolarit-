@@ -1,80 +1,108 @@
 import sqlite3
 
+
 def initialiser_bd():
 
-    conn = sqlite3.connect("db/scolarite.db")
+    conn = sqlite3.connect(
+        "db/scolarite.db"
+    )
 
     cursor = conn.cursor()
 
     # Table étudiants
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS etudiants (
 
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        CREATE TABLE IF NOT EXISTS etudiants (
 
-        nom TEXT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-        prenom TEXT,
+            nom TEXT,
 
-        matricule TEXT UNIQUE,
+            prenom TEXT,
 
-        filiere TEXT
-    )
+            matricule TEXT UNIQUE,
+
+            filiere TEXT
+        )
+
     """)
 
     # Table cours
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS cours (
 
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        CREATE TABLE IF NOT EXISTS cours (
 
-        code TEXT UNIQUE,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-        titre TEXT,
+            code TEXT UNIQUE,
 
-        credit INTEGER
-    )
+            titre TEXT,
+
+            credit INTEGER
+        )
+
     """)
 
     # Table inscriptions
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS inscriptions (
 
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        CREATE TABLE IF NOT EXISTS inscriptions (
 
-        etudiant_id INTEGER,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-        cours_id INTEGER,
+            etudiant_id INTEGER,
 
-        note REAL,
+            cours_id INTEGER,
 
-        FOREIGN KEY(etudiant_id) REFERENCES etudiants(id),
+            note REAL,
 
-        FOREIGN KEY(cours_id) REFERENCES cours(id)
-    )
+            FOREIGN KEY(etudiant_id)
+            REFERENCES etudiants(id),
+
+            FOREIGN KEY(cours_id)
+            REFERENCES cours(id)
+        )
+
     """)
 
     # Table utilisateurs
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
 
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        CREATE TABLE IF NOT EXISTS users (
 
-        username TEXT UNIQUE,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-        password TEXT,
+            username TEXT UNIQUE,
 
-        role TEXT
-    )
+            password TEXT,
+
+            role TEXT
+        )
+
     """)
+
+    # Ajouter admin
+    cursor.execute("""
+
+        INSERT OR IGNORE INTO users
+        (username, password, role)
+
+        VALUES (?, ?, ?)
+
+    """, (
+
+        "admin",
+        "admin123",
+        "admin"
+    ))
 
     conn.commit()
 
     conn.close()
 
+    print("✅ Base créée.")
+
 
 if __name__ == "__main__":
 
     initialiser_bd()
-
-    print("✅ Base de données créée.")
