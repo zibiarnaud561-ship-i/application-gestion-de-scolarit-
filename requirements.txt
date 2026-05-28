@@ -1,3 +1,8 @@
 fpdf2==2.7.8        # Génération des bulletins PDF
 matplotlib==3.9.0   # Graphiques statistiques
 pytest==8.2.0       # Tests unitaires
+pyQt6
+pytest-cov
+pytest
+matplotlib
+reportlab

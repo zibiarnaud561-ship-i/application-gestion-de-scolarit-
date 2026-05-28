@@ -1,10 +1,12 @@
 # 🎓 Gestion Scolarité
 
-Application web en **Python/SQLite** pour la gestion académique : étudiants, cours, inscriptions, bulletins et authentification.
+Application web en **Python/SQLite** pour la gestion académique :
+étudiants, cours, inscriptions, bulletins et authentification.
 
 ---
 
 ## 🚀 Fonctionnalités
+
 - **Étudiants** : ajout, modification, suppression, affichage.
 - **Cours** : gestion des codes, titres et crédits.
 - **Inscriptions** : liaison étudiants ↔ cours avec notes.
@@ -13,9 +15,8 @@ Application web en **Python/SQLite** pour la gestion académique : étudiants, c
 
 ---
 
-## 🛠️ Installation
+## 🛠 Installation
 
 1. Cloner le projet :
-   ```bash
-   git clone https://github.com/ton-compte/gestion_scolarite.git
-   cd gestion_scolarite
+
+```bash
