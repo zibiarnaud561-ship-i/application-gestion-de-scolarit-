@@ -8,7 +8,7 @@ class Etudiant:
         self.filiere = filiere
 
     def ajouter(self):
-        conn = sqlite3.connect("scolarite.db")
+        conn = sqlite3.connect("db/scolarite.db")
         cursor = conn.cursor()
         cursor.execute("""
             INSERT INTO etudiants (nom, prenom, matricule, filiere)
@@ -19,7 +19,7 @@ class Etudiant:
 
     @staticmethod
     def afficher_tous():
-        conn = sqlite3.connect("scolarite.db")
+        conn = sqlite3.connect("db/scolarite.db")
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM etudiants")
         rows = cursor.fetchall()
@@ -28,7 +28,7 @@ class Etudiant:
 
     @staticmethod
     def modifier(matricule, nouveau_nom, nouveau_prenom, nouvelle_filiere):
-        conn = sqlite3.connect("scolarite.db")
+        conn = sqlite3.connect("db/scolarite.db")
         cursor = conn.cursor()
         cursor.execute("""
             UPDATE etudiants
@@ -40,7 +40,7 @@ class Etudiant:
 
     @staticmethod
     def supprimer(matricule):
-        conn = sqlite3.connect("scolarite.db")
+        conn = sqlite3.connect("db/scolarite.db")
         cursor = conn.cursor()
         cursor.execute("DELETE FROM etudiants WHERE matricule=?", (matricule,))
         conn.commit()
